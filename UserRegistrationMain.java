@@ -6,11 +6,11 @@ import java.util.regex.Pattern;
 public class UserRegistrationMain {
     public static void userDataValidation(){
         Scanner sc = new Scanner(System.in);
-        String fName = null, lName = null, emailId = null;
+        String fName = null, lName = null, emailId = null, mobileNumber = null;
 
         int temp = -1;
         while(temp != 0) {
-            System.out.println("1.FirstName 2.LastName 3.EmailID 7.Exit");
+            System.out.println("1.FirstName 2.LastName 3.EmailID 4.MobileNumber 7.Exit");
             System.out.print("Enter the option:");
             int choice = sc.nextInt();
 
@@ -54,6 +54,19 @@ public class UserRegistrationMain {
                         }
                     }
                     break;
+                case 4:
+                    boolean flagMobile = false;
+                    while (flagMobile != true) {
+                        System.out.print("Enter mobile number:");
+                        mobileNumber = sc.next();
+                        if (mobileNumberValidation(mobileNumber)) {
+                            flagMobile = true;
+                            System.out.println("mobile number valid");
+                        } else {
+                            System.out.println("!mobile number not valid!");
+                        }
+                    }
+                    break;
                 case 7:
                     temp = 0;
                     break;
@@ -76,6 +89,11 @@ public class UserRegistrationMain {
     }
     public static boolean emailIdValidation(String value){
         Pattern pattern = Pattern.compile("^[a-z0-9]+[_/+-.]*[0-9a-z]*@[a-z0-9]+.[a-z]{2,6}.[a-z]*$");
+        Matcher matcher = pattern.matcher(value);
+        return (matcher.matches());
+    }
+    public static boolean mobileNumberValidation(String value){
+        Pattern pattern = Pattern.compile("^[1-9]{1}+[0-9]{1}+[-][0-9]{10}$");
         Matcher matcher = pattern.matcher(value);
         return (matcher.matches());
     }
