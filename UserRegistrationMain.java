@@ -111,7 +111,7 @@ public class UserRegistrationMain {
         return (matcher.matches());
     }
     public static boolean passwordValidation(String value){
-        Pattern pattern = Pattern.compile("^(?=[1-9a-zA-Z])(?=.*[A-Z]).{8}");
+        Pattern pattern = Pattern.compile("^(?=[a-z])(?=.*[A-Z])(?=.*[0-9]).{8}$");
         Matcher matcher = pattern.matcher(value);
         return (matcher.matches());
     }
